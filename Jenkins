@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'ver/1.21.4',
+                git branch: 'main',
                     url: 'https://github.com/lsgadminlab/PaperMC-K8s-Resource.git'
             }
         }
