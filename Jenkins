@@ -23,9 +23,7 @@ pipeline {
                     usernameVariable: 'SSH_USER'
                 )]) {
                     sh '''
-                        mkdir -p ~/.ssh
-                        ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-                        GIT_SSH_COMMAND="ssh -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=accept-new" git clone --branch ver/1.21.4 git@github.com:lsgadminlab/PaperMC-K8s-Resources.git .
+                        GIT_SSH_COMMAND="ssh -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=accept-new" git clone --branch main git@github.com:lsgadminlab/PaperMC-K8s-Resource.git .
                     '''
                 }
             }
