@@ -6,6 +6,7 @@ pipeline {
         IMAGE_NAME    = 'papermc'
         PAPER_VERSION = '1.21.4'
         IMAGE_BASE    = "${REGISTRY}/${IMAGE_NAME}"
+        TAG_FULL      = ''
     }
 
     options {
@@ -15,20 +16,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                withCredentials([sshUserPrivateKey(
-                    credentialsId: 'PaperMC-k8s-resource',
-                    keyFileVariable: 'SSH_KEY_FILE',
-                    usernameVariable: 'SSH_USER'
-                )]) {
-                    sh '''
-                        GIT_SSH_COMMAND="ssh -i ${SSH_KEY_FILE} -o StrictHostKeyChecking=accept-new" git clone --branch main git@github.com:lsgadminlab/PaperMC-K8s-Resource.git .
-                    '''
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
