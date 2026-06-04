@@ -6,7 +6,6 @@ pipeline {
         IMAGE_NAME    = 'papermc'
         PAPER_VERSION = '1.21.4'
         IMAGE_BASE    = "${REGISTRY}/${IMAGE_NAME}"
-        TAG_FULL      = ''
     }
 
     options {
@@ -16,6 +15,13 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'ver/1.21.4',
+                    url: 'https://github.com/lsgadminlab/PaperMC-K8s-Resources.git'
+            }
+        }
+
         stage('Build') {
             steps {
                 script {
